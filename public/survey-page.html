@@ -36,7 +36,7 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <a class="navbar-brand" rel="home" href="#" title="Buy Sell Rent Everyting">
-        <img style="max-width:50px; margin-top: -7px;" src="images/onecolor.png">
+        <img style="max-width:50px; margin-top: -7px;" src="images/icon.png">
       </a>
       <a class="navbar-brand" href="#">Party Planner</a>
 
@@ -86,12 +86,12 @@
           <div class="col-md-3" id="partyquestions">
             <form>
               <div class="form-group">
-                <label for="partyTitle">Party Title</label>
+                <label for="partyTitle"><h1>Party Title</h3></label>
                 <input type="email" class="form-control" id="partyTitle" aria-describedby="partyTitle" placeholder="Party Title">
                 <small id="partyDes" class="form-text text-muted">Tell us about your Party</small>
               </div>
               <div class="form-group">
-                <label for="exampleSelect1">How Many Dishes Would You Like? </label>
+                <label for="exampleSelect1"><p>How Many Dishes Would You Like?<p></label>
                 <select class="form-control" id="exampleSelect1" placeholder="Matching">
                   <option>1</option>
                   <option>2</option>
@@ -101,7 +101,7 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="exampleTextarea">Tell everyone about your Party!</label>
+                <label for="exampleTextarea"><p>Tell everyone about your Party!</p></label>
                 <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Give everyone a description of your Party!"></textarea>
                 <small id="partyDes" class="form-text text-muted">Describe your Party</small>
 
@@ -188,6 +188,53 @@
                   </label>
                 </div>
               </fieldset>
+
+
+<br>
+<!-- Verify if 21 by asking user -->
+<fieldset>
+    <legend>Is this party 21+?</legend>
+    <select name="ageverify" id="ageverify">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+</fieldset>
+<br>
+
+<!-- perfalc is perfered alcohols. -->
+<!-- Should ONLY SHOW if q1 === true -->
+<fieldset id="sensitive">
+    <legend>Which alcohol would you like to use?</legend>
+    <select name="perfalc" id="perfalc">
+        <option value="Gin">Gin</option>
+        <option value="Vodka">Vodka</option>
+        <option value="Tequila">Tequila</option>
+        <option value="Rum">Rum</option>
+        <option value="Whiskey">Whiskey</option>
+        <option value="Brandy">Brandy</option>
+        <option value="Scotch">Scotch</option>
+    </select>
+</fieldset>
+<br>
+
+<!-- Amount of recipes to show  -->
+<fieldset>
+    <legend>How many drink ideas would you like?</legend>
+    <select name="recipenum" id="recipenum">
+        <option value=1>One</option>
+        <option value=2>Two</option>
+        <option value=3>Three</option>
+        <option value=4>Four</option>
+        <option value=5>Five</option>
+    </select>
+</fieldset>
+
+<br> 
+
+
+
+
+
 
               <div class="form-group">
                 <label for="activities">Would you Like Activites for Party Too? </label>
