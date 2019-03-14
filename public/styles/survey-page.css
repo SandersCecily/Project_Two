@@ -96,4 +96,5 @@ p {
     background-color:#FFE5B4;
     margin: 30px;
     padding: 30px;
+    overflow: auto;
 }
