@@ -4,6 +4,11 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
+
+var $loginBtn = $("login-button");
+var $registerBtn = $("register-button");
+
+
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function(example) {
@@ -140,6 +145,26 @@ var handleDeleteBtnClick = function() {
   });
 };
 
+// loginUserHangler is called when a user presses the login button from the home page 
+var loginUserHangler = function (event) {
+  event.preventDefault();
+}
+
+
+
+
+
+
+/////////////////////////////////////////
+
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+$loginBtn.on("click", loginUserHangler)
+$registerBtn.on("click",registerUserHangler)
+
+
+
+
+
