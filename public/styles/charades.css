@@ -1,0 +1,44 @@
+        /* body {
+            background-image: URL("images/bg-food-drinks.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            font-family: Verdana;
+            color: #333;
+        }  */
+
+        button,
+        input {
+            width: 10em;
+            margin: 0.5em;
+            padding: 0.25em 0.5em;
+            font: 16px Verdana;
+            border: solid 1px #aaa;
+        }
+        .jumbotron {
+            width: 50%;
+            height: 50%;
+            background-color:orange;
+            
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            
+            margin: auto;
+        }
+    
+    
+        .lead {
+            float:left;
+            margin: auto;
+        }
+
+        .h1{
+            text-align: center;
+        }
+        #header1 {
+            background-color: white;
+
+        }

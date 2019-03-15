@@ -1,0 +1,126 @@
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand" rel="home" href="#" title="Buy Sell Rent Everyting">
+                <img style="max-width:50px; margin-top: -7px;" src="images/onecolor.png">
+            </a>
+            <a class="navbar-brand" href="#">Party Planner</a>
+            
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Plan Party</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Activies</a>
+                </li>
+            </ul>
+          
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Welcome, {{Users.user_name}}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+
+                    <a class="dropdown-item" href="#">Log Out</a>
+                    
+                </div>
+            </li>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <h1 class=" display-5 lead  text-white">Playing Charades: Press Next for another word</h1>
+        <hr class="my-4">
+        <h3 id= "word-field" class="display-5 center-block"></h3>
+        <!-- <hr class="my-4"> -->
+        <p id="word-meta"></p>
+        <p class="lead center-block">
+            <a id="next-btn" class="btn btn-primary btn-lg" href="#" role="button">Next Word</a>
+        
+            <a id="exit-btn" class="btn btn-primary btn-lg" href="#" role="button">Exit</a>
+        </p>
+    </div>
+    <script type="text/javascript">
+        wordsObject = [
+
+            {
+                word: "Friday 13",
+                discrip: "Movie: Horro movie"
+            },
+            {
+                word: "Any given Sunday",
+                discrip: "Movie: about football"
+            },
+            {
+                word: "Nelson Mendela",
+                discrip: "Person: Freedom Fighter from South Africa"
+            },
+            {
+                word: "Great Wall of China",
+                discrip: "Place: The longest wall in China"
+            },
+            {
+                word: "American Beauty",
+                discrip: "Movie: American movie staring Kevin Spacey"
+            },
+            {
+                word: "Full House",
+                discrip: "Show: About a family based out of San Franscisco"
+            },
+            {
+                word: "Bruce Lee",
+                discrip: "Person: Famous martial artist  "
+            },
+            {
+                word: "Disney World",
+                discrip: "Place: Park in Orlando, Florida"
+            },
+            {
+                word: "Mount Rushmor",
+                discrip: "Place: in South Dekota"
+            },
+
+            {
+                word: "Thanks Giving ",
+                discrip: "Even: American Holiday"
+            }
+
+        ];
+        var randomObject = wordsObject;
+        // console.log("Random Array Element #2 " + randomObject[1].word)
+
+        $("#next-btn").on("click", function (event) {
+            if (randomObject){
+                var randomSelectedElement = wordsObject[Math.floor(Math.random() * wordsObject.length)];
+                // console.log("randomSelectedElement " + randomSelectedElement.word)
+                randomWord = randomSelectedElement.word
+                randomDisc = randomSelectedElement.discrip
+                // console.log("Random Element " + randomSelectedElement)
+                // console.log("Random Word " + randomWord)
+                // console.log("Random Discriptioin " + randomDisc)
+
+
+
+                randomObject = randomObject.filter(e => e !== randomSelectedElement);
+                console.log(randomObject)
+                $("#word-field").html(randomWord);
+                $("#word-meta").html(randomDisc)
+            } else {
+                Alert("Sorry,there are no other wordsElement left.")
+            }
+
+            
+        });
+
+        // $("exit-btn").on("click", function (event))
+    </script>
