@@ -27,6 +27,52 @@ var API = {
       url: "api/examples/" + id,
       type: "DELETE"
     });
+  },
+
+  saveUsers: function(user) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/users",
+      data: JSON.stringify(user)
+    });
+  },
+  getUsers: function() {
+    return $.ajax({
+      url: "api/users",
+      type: "GET"
+    });
+  },
+  deleteUsers: function(id) {
+    return $.ajax({
+      url: "api/users/" + id,
+      type: "DELETE"
+    });
+  },
+
+  saveParties: function(party) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/parties",
+      data: JSON.stringify(party)
+    });
+  },
+  getParties: function() {
+    return $.ajax({
+      url: "api/parties",
+      type: "GET"
+    });
+  },
+  deleteParties: function(id) {
+    return $.ajax({
+      url: "api/parties/" + id,
+      type: "DELETE"
+    });
   }
 };
 

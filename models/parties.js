@@ -7,11 +7,14 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
-    age_greater_21: DataTypes.BOOLEAN,
-    password: DataTypes.STRING,
+    dish_num: DataTypes.INTEGER,
     text: DataTypes.STRING,
-    allergy: DataTypes.BOOLEAN,
-    allergy_type: DataTypes.STRING
+    attentees_allergies: DataTypes.STRING,
+    dietar_needs: DataTypes.STRING,
+    age_greater_21: DataTypes.BOOLEAN,
+    alcohol_type: DataTypes.STRING,
+    num_drinks: DataTypes.INTEGER,
+    activites: DataTypes.BOOLEAN
   });
   return Parties;
 };
