@@ -1,5 +1,5 @@
         body {
-            background-image: URL("images/bg-food-drinks.jpg");
+            background-image: URL("../images/bg-food-drinks.jpg");
             background-size: cover;
             background-repeat: no-repeat;
             height: 100%;
