@@ -26,7 +26,7 @@
 
 
 <body>
-
+  {{!-- //Navbar --}}
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
       aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,12 +67,7 @@
     </div>
   </nav>
 
-
-
-
-
-
-
+  {{!-- //Survey Div --}}
   <div class="container-fluid">
 
 
@@ -123,8 +118,13 @@
                 <legend>Attendees Allergies</legend>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1"
-                      checked>
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios0" value="option0" checked>
+                    None
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1">
                     Eggs
                   </label>
                 </div>
@@ -136,37 +136,37 @@
                 </div>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option2">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3">
                     Peanuts
                   </label>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios4" value="option2">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios4" value="option4">
                     Tree Nuts
                   </label>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios5" value="option2">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios5" value="option5">
                     Soy
                   </label>
                 </div>
                 <div class="form-check disabled">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios6" value="option3">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios6" value="option6">
                     Fish
                   </label>
                 </div>
                 <div class="form-check disabled">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios7" value="option3">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios7" value="option7">
                     Shellfish
                   </label>
                 </div>
                 <div class="form-check disabled">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios8" value="option3">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios8" value="option8">
                     Wheat
                   </label>
                 </div>
@@ -176,26 +176,26 @@
                 <legend>Dietary Needs</legend>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios9" value="option1"
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios9" value="option9"
                       checked>
                     Vegan
                   </label>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios10" value="option2">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios10" value="option10">
                     Vegetarian
                   </label>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios11" value="option2">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios11" value="option11">
                     Gluten Free
                   </label>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios12" value="option2">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios12" value="option12">
                     None
                   </label>
                 </div>
@@ -251,8 +251,8 @@
               <div class="form-group">
                 <label for="activities">Would you Like Activites for Party Too? </label>
                 <select class="form-control" id="exampleSelect1" placeholder="activities">
-                  <option>Yes</option>
                   <option>No</option>
+                  <option>Yes</option>
 
                 </select>
               </div>
