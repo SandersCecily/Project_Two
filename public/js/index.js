@@ -1,178 +1,160 @@
-// Buttons and Grabbers
-const ageverify = document.getElementById("ageverify");
-const perferalc = document.getElementById("perfalc");
-const recipenum = document.getElementById("recipenum");
-const resultdiv = document.getElementById("results");
+// Get references to page elements
+var $exampleText = $("#example-text");
+var $exampleDescription = $("#example-description");
+var $submitBtn = $("#submit");
+var $exampleList = $("#example-list");
 
-window.addEventListener("load",function() {
+// refreshExamples gets new examples from the db and repopulates the list
+var refreshExamples = function() {
+  API.getExamples().then(function(data) {
+    var $examples = data.map(function(example) {
+      var $a = $("<a>")
+        .text(example.text)
+        .attr("href", "/example/" + example.id);
 
-    document.getElementById("submit").addEventListener("click",function(event) {
-      event.preventDefault();
+      var $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": example.id
+        })
+        .append($a);
 
-      //gets true false value
-      var alc_allowed = ageverify.options[ageverify.selectedIndex].value;
-      console.log(alc_allowed);
-      
-      //gets the perfered alcohols
-      var perfered = perferalc.options[perferalc.selectedIndex].value;
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
 
-      //gets the amount of recipes to 
-      var numofrecipes = recipenum.options[recipenum.selectedIndex].value;
+      $li.append($button);
 
-      // Building AJAX Call
-      if (alc_allowed==="true"){
-        var queryUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + perfered;
-        console.log("Query: " + queryUrl + "\n"+
-        "Number of Requests: " + numofrecipes);
-        ajaxCallGet(queryUrl, numofrecipes);
-      }
-      else{
-        var queryUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic";
-        console.log("Query: " + queryUrl + "\n"+
-        "Number of Requests: " + numofrecipes);
-        ajaxCallGet(queryUrl, numofrecipes);
-      }
+      return $li;
     });
-  }); //end on load
 
-function ajaxCallGet(query, num){
-  $.ajax({
-    url: query,
-    method: "GET",
-    success: function(response) {
-      console.log(response);
-      var responseArray = response.drinks;
-      var randomDrinkIDs= [];
-      while (randomDrinkIDs.length<num){
-        var newdrinkid = Math.floor(Math.random()*responseArray.length);
-        var newdrink = response.drinks[newdrinkid].idDrink;
-        randomDrinkIDs.push(newdrink);
-      }
-      console.log(randomDrinkIDs);
-      for(let i = 0; i< randomDrinkIDs.length; i++){
-        ajaxCallPost(randomDrinkIDs[i]);
-      }
-    }});
- }//end ajaxget
+    $exampleList.empty();
+    $exampleList.append($examples);
+  });
+};
+
+// handleFormSubmit is called whenever we submit a new example
+// Save the new example to the db and refresh the list
+var handleFormSubmit = function(event) {
+  event.preventDefault();
+
+  var example = {
+    text: $exampleText.val().trim(),
+    description: $exampleDescription.val().trim()
+  };
+
+  if (!(example.text && example.description)) {
+    alert("You must enter an example text and description!");
+    return;
+  }
+
+  API.saveExample(example).then(function() {
+    refreshExamples();
+  });
+
+  $exampleText.val("");
+  $exampleDescription.val("");
+};
+
+// handleDeleteBtnClick is called when an example's delete button is clicked
+// Remove the example from the db and refresh the list
+var handleDeleteBtnClick = function() {
+  var idToDelete = $(this)
+    .parent()
+    .attr("data-id");
+
+  API.deleteExample(idToDelete).then(function() {
+    refreshExamples();
+  });
+};
+
+// Add event listeners to the submit and delete buttons
+$submitBtn.on("click", handleFormSubmit);
+$exampleList.on("click", ".delete", handleDeleteBtnClick);
 
 
-  function ajaxCallPost (arr){
-    $.ajax({
-      url: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + arr,
-      method: "POST",
-      success: function (response){
-        console.log(response.drinks[0]);
-
-        //make div
-        var div = document.createElement("div");
-
-        //make h1 with title
-        var head = document.createElement("H1");
-        var headtitle = document.createTextNode(response.drinks[0].strDrink);
-
-        //appending
-        head.appendChild(headtitle);
-        div.appendChild(head);
-
-        //create img format and append
-        var img = document.createElement("img");
-        img.setAttribute("src", response.drinks[0].strDrinkThumb);
-        img.setAttribute("width", "175");
-        img.setAttribute("height", "auto");
-        img.setAttribute("alt", "Drink Image");
-        div.appendChild(img);
-
-        //adding breaks
-        div.appendChild(document.createElement("br"));
-        div.appendChild(document.createTextNode("Ingredients: "));
-        div.appendChild(document.createElement("br"));
-
-        //ingredients list
-        var list = document.createElement("ul");
-        if (response.drinks[0].strIngredient1 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure1 + " " + response.drinks[0].strIngredient1));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient2 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure2 + " " + response.drinks[0].strIngredient2));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient3 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure3 + " " + response.drinks[0].strIngredient3));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient4 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure4 + " " + response.drinks[0].strIngredient4));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient5 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure5 + " " + response.drinks[0].strIngredient5));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient6 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure6 + " " + response.drinks[0].strIngredient6));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient7 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure7 + " " + response.drinks[0].strIngredient7));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient8 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure8 + " " + response.drinks[0].strIngredient8));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient9 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure9 + " " + response.drinks[0].strIngredient9));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient10 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure10 + " " + response.drinks[0].strIngredient10));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient11 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure11 + " " + response.drinks[0].strIngredient11));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient12 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure12 + " " + response.drinks[0].strIngredient12));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient13 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure13 + " " + response.drinks[0].strIngredient13));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient14 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure14 + " " + response.drinks[0].strIngredient14));
-          list.appendChild(listitem);
-        }
-        if (response.drinks[0].strIngredient15 != ""){
-          var listitem = document.createElement("li");
-          listitem.appendChild(document.createTextNode(response.drinks[0].strMeasure15 + " " + response.drinks[0].strIngredient15));
-          list.appendChild(listitem);
-        }
-        div.appendChild(list);
-
-        //add instructions and add to website
-        div.appendChild(document.createElement("br"));
-        var str = "Instructions: ";
-        str += response.drinks[0].strInstructions;
-        var content = document.createTextNode(str);
-        div.appendChild(content);
-        resultdiv.appendChild(div);
+// The API object contains methods for each kind of request we'll make
+var API = {
+  saveExample: function(example) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
       },
+      type: "POST",
+      url: "api/examples",
+      data: JSON.stringify(example)
     });
-  }//end ajaxpost
+  },
+  getExamples: function() {
+    return $.ajax({
+      url: "api/examples",
+      type: "GET"
+    });
+  },
+  deleteExample: function(id) {
+    return $.ajax({
+      url: "api/examples/" + id,
+      type: "DELETE"
+    });
+  },
+
+  saveUser: function(user) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/user",
+      data: JSON.stringify(user)
+    });
+  },
+  getUser: function() {
+    return $.ajax({
+      url: "api/user",
+      type: "GET"
+    });
+  },
+  deleteUser: function(id) {
+    return $.ajax({
+      url: "api/user/" + id,
+      type: "DELETE"
+    });
+  },
+
+  saveParties: function(party) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/parties",
+      data: JSON.stringify(party)
+    });
+  },
+  getParties: function() {
+    return $.ajax({
+      url: "api/parties",
+      type: "GET"
+    });
+  },
+  deleteParties: function(id) {
+    return $.ajax({
+      url: "api/parties/" + id,
+      type: "DELETE"
+    });
+  }
+};
+
+
+
+//login form elements
+// var $loginBtn = $("#login-button");
+// var $emailUserLogin = $("#users-email");
+// var $passwLogin = $("#user-password");
+
+//register form elements
+// var $registerBtn = $("#register-button");
+// var $partyName = $("#name-register");
+// var $emailRegister = $("#email-register");
+// var $passwRegister = $("#password-register");
+// var $ageVerify = $("#21-age-verify-register");
