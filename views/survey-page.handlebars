@@ -26,7 +26,7 @@
 
 
 <body>
-
+  {{!-- //Navbar --}}
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
       aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,10 +42,10 @@
 
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/public/login-register.html">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">Plan Party</a>
+          <a class="nav-link" href="/public/survey-page.html">Plan Party</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="#">Activies</a>
@@ -55,7 +55,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          Welcome, {{example.name}}
+          Welcome, {{Users.user_name}}
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">Action</a>
@@ -67,40 +67,27 @@
     </div>
   </nav>
 
-
-
-
-
-
-
+  {{!-- //Survey Div --}}
   <div class="container-fluid">
-
-
-
     <div class="row">
       <div class="col-md-12">
-
-
-
         <div class="row">
           <div class="col-md-3" id="partyquestions">
             <form>
+
               <div class="form-group">
                 <label for="partyTitle"><h1>Party Title</h1></label>
                 <input type="text" class="form-control" id="partyTitle" aria-describedby="partyTitle" placeholder="Party Title">
                 <small id="partyDes" class="form-text text-muted">Tell us about your Party</small>
               </div>
 
-
-                <div class="form-group">
-                  <label for="whatDish">
-                    <p>What type of Dish would you Like?</p>
-                  </label>
-                  <input type="text" class="form-control" id="dishType" aria-describedby="dishType" placeholder="Party Title">
-                  <small id="dishType" class="form-text text-muted">ex: Fish, Chicken...</small>
-                </div>
-
-
+              <div class="form-group">
+                <label for="whatDish">
+                  <p>What type of Dish would you Like?</p>
+                </label>
+                <input type="text" class="form-control" id="dishType" aria-describedby="dishType" placeholder="Party Title">
+                <small id="dishType" class="form-text text-muted">ex: Fish, Chicken...</small>
+              </div>
 
               <div class="form-group">
                 <label for="exampleSelect1"><p>How Many Dishes Would You Like?<p></label>
@@ -123,8 +110,13 @@
                 <legend>Attendees Allergies</legend>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1"
-                      checked>
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios0" value="option0" checked>
+                    None
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1">
                     Eggs
                   </label>
                 </div>
@@ -136,37 +128,37 @@
                 </div>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3">
                     Peanuts
                   </label>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios4" value="option4">
                     Tree Nuts
                   </label>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios5" value="option5">
                     Soy
                   </label>
                 </div>
                 <div class="form-check disabled">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios6" value="option6">
                     Fish
                   </label>
                 </div>
                 <div class="form-check disabled">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios7" value="option7">
                     Shellfish
                   </label>
                 </div>
                 <div class="form-check disabled">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios8" value="option8">
                     Wheat
                   </label>
                 </div>
@@ -176,26 +168,26 @@
                 <legend>Dietary Needs</legend>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1"
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios9" value="option9"
                       checked>
                     Vegan
                   </label>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios10" value="option10">
                     Vegetarian
                   </label>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios11" value="option11">
                     Gluten Free
                   </label>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                    <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios12" value="option12">
                     None
                   </label>
                 </div>
@@ -206,7 +198,7 @@
 <!-- Verify if 21 by asking user -->
 <fieldset>
     <legend>Is this party 21+?</legend>
-    <select name="ageverify" id="ageverify">
+    <select name="age-verify" id="age-verify">
         <option value="true">Yes</option>
         <option value="false">No</option>
     </select>
@@ -232,7 +224,7 @@
 <!-- Amount of recipes to show  -->
 <fieldset>
     <legend>How many drink ideas would you like?</legend>
-    <select name="recipenum" id="recipenum">
+    <select name="recipenum" id="recipe-num">
         <option value=1>One</option>
         <option value=2>Two</option>
         <option value=3>Three</option>
@@ -251,8 +243,8 @@
               <div class="form-group">
                 <label for="activities">Would you Like Activites for Party Too? </label>
                 <select class="form-control" id="exampleSelect1" placeholder="activities">
-                  <option>Yes</option>
                   <option>No</option>
+                  <option>Yes</option>
 
                 </select>
               </div>
@@ -284,9 +276,19 @@
 
         </div>
 
+</div>
+</div>
 
 
+<div class="row">
+  <div class="col-md-12">
+      <img style="max-width:190px; margin:10px;" src="images/logofullcolor.png">
 
+    </div>
+    </div>
+
+
+</div>
 </body>
 
 </html>
