@@ -16,13 +16,14 @@
             border: solid 1px #aaa;
         }
         .jumbotron {
-            width: 50%;
-            height: 50%;
-            background-color:orange;
+            width: 60%;
+            height: 60%;
+            background-color:rgb(255, 165, 0);
             
             position: absolute;
             top:0;
-            bottom: 0;
+            bottom: 60px;
+
             left: 0;
             right: 0;
             
@@ -41,4 +42,12 @@
         #header1 {
             background-color: white;
 
+        }
+
+        #charades-jumbo{
+            background-color:#FFE5B4;
+        }
+
+        #word-field {
+            font-family: 'Abril Fatface', cursive;
         }

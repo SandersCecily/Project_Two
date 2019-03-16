@@ -80,7 +80,6 @@ var API = {
     });
   }
 };
-
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {
   API.getExamples().then(function(data) {
@@ -160,11 +159,5 @@ var loginUserHangler = function (event) {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
-
-$loginBtn.on("click", loginUserHangler)
-$registerBtn.on("click",registerUserHangler)
-
-
-
 
 
