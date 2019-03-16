@@ -31,3 +31,4 @@ This website works by running the link, creatng an account and filling out a sur
 Currently this project is under construction and goals that need to be worked on can be found in the projects tabs.
 
 ### Improvements
+This project could be improved infinitely.
