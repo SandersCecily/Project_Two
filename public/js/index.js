@@ -4,6 +4,82 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
+
+var $loginBtn = $("login-button");
+var $registerBtn = $("register-button");
+
+
+// The API object contains methods for each kind of request we'll make
+var API = {
+  saveExample: function(example) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/examples",
+      data: JSON.stringify(example)
+    });
+  },
+  getExamples: function() {
+    return $.ajax({
+      url: "api/examples",
+      type: "GET"
+    });
+  },
+  deleteExample: function(id) {
+    return $.ajax({
+      url: "api/examples/" + id,
+      type: "DELETE"
+    });
+  },
+
+  saveUsers: function(user) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/users",
+      data: JSON.stringify(user)
+    });
+  },
+  getUsers: function() {
+    return $.ajax({
+      url: "api/users",
+      type: "GET"
+    });
+  },
+  deleteUsers: function(id) {
+    return $.ajax({
+      url: "api/users/" + id,
+      type: "DELETE"
+    });
+  },
+
+  saveParties: function(party) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/parties",
+      data: JSON.stringify(party)
+    });
+  },
+  getParties: function() {
+    return $.ajax({
+      url: "api/parties",
+      type: "GET"
+    });
+  },
+  deleteParties: function(id) {
+    return $.ajax({
+      url: "api/parties/" + id,
+      type: "DELETE"
+    });
+  }
+};
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {
   API.getExamples().then(function(data) {
@@ -68,93 +144,20 @@ var handleDeleteBtnClick = function() {
   });
 };
 
+// loginUserHangler is called when a user presses the login button from the home page 
+var loginUserHangler = function (event) {
+  event.preventDefault();
+}
+
+
+
+
+
+
+/////////////////////////////////////////
+
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  },
-
-  saveUser: function(user) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/user",
-      data: JSON.stringify(user)
-    });
-  },
-  getUser: function() {
-    return $.ajax({
-      url: "api/user",
-      type: "GET"
-    });
-  },
-  deleteUser: function(id) {
-    return $.ajax({
-      url: "api/user/" + id,
-      type: "DELETE"
-    });
-  },
-
-  saveParties: function(party) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/parties",
-      data: JSON.stringify(party)
-    });
-  },
-  getParties: function() {
-    return $.ajax({
-      url: "api/parties",
-      type: "GET"
-    });
-  },
-  deleteParties: function(id) {
-    return $.ajax({
-      url: "api/parties/" + id,
-      type: "DELETE"
-    });
-  }
-};
-
-
-
-//login form elements
-// var $loginBtn = $("#login-button");
-// var $emailUserLogin = $("#users-email");
-// var $passwLogin = $("#user-password");
-
-//register form elements
-// var $registerBtn = $("#register-button");
-// var $partyName = $("#name-register");
-// var $emailRegister = $("#email-register");
-// var $passwRegister = $("#password-register");
-// var $ageVerify = $("#21-age-verify-register");

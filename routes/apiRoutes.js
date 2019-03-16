@@ -25,16 +25,20 @@ module.exports = function(app) {
   });
 
   // Get all user
+
   app.get("/api/user", function(req, res) {
     db.User.findAll({}).then(function(dbUser) {
       res.json(dbUser);
+
     });
   });
 
   // Create a new user
   app.post("/api/user", function(req, res) {
+
     db.User.create(req.body).then(function(dbUser) {
       res.json(dbUser);
+
     });
   });
 
@@ -44,6 +48,7 @@ module.exports = function(app) {
       dbUser
     ) {
       res.json(dbUser);
+
     });
   });
 
@@ -52,6 +57,7 @@ module.exports = function(app) {
   app.get("/api/parties", function(req, res) {
     db.Parties.findAll({}).then(function(dbParties) {
       res.json(dbParties);
+
     });
   });
 

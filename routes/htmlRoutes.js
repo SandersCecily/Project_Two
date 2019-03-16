@@ -18,7 +18,6 @@ module.exports = function(app) {
       res.render("survey-page", {
         msg: "Welcome!",
         examples: dbExamples
-
       });
     });
   });
@@ -35,20 +34,15 @@ module.exports = function(app) {
   });
 
 
- 
-
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
     db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
       res.render("example", {
         example: dbExample
-
       });
     });
   });
 
-
-  // Load Charades page
   app.get("/charades", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
       res.render("charades", {
@@ -58,8 +52,4 @@ module.exports = function(app) {
     });
   });
 
-
-
-
-  
 }
