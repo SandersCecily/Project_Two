@@ -1,7 +1,7 @@
 // Buttons and Grabbers
-const ageverify = document.getElementById("ageverify");
+const ageverify = document.getElementById("age-verify");
 const perferalc = document.getElementById("perfalc");
-const recipenum = document.getElementById("recipenum");
+const recipenum = document.getElementById("recipe-num");
 const resultdiv = document.getElementById("drink");
 
 
