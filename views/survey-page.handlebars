@@ -17,7 +17,7 @@
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">Plan Party</a>
+          <a class="nav-link" href="/survey">Plan Party</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/charades">Charades</a>
@@ -42,20 +42,26 @@
   {{!-- //Survey Div --}}
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12">
-        <div class="row">
           <div class="col-md-3" id="partyquestions">
+            
             <form>
 
               <div class="form-group">
                 <label for="partyTitle"><h1>Party Title</h1></label>
-                <input type="text" class="form-control" id="partyTitle" aria-describedby="partyTitle" placeholder="Party Title">
+                <input type="text" class="form-control"  id="partyTitle" aria-describedby="partyTitle" placeholder="Party Title">
                 <small id="partyDes" class="form-text text-muted">Tell us about your Party</small>
               </div>
 
+               <div class="form-group">
+                <h2>Choose Your Ingredient</h2>
+                <input type="text" class="form-control" name="ingredient" id="ingredient"  placeholder="Ingredient">
+                <small id="ingredient" class="form-text text-muted">Choose your ingredient</small>
+                
+               </div>
+
               <div class="form-group">
                 <label for="exampleSelect1"><p>How Many Dishes Would You Like?<p></label>
-                <select class="form-control" id="exampleSelect1" placeholder="Matching">
+                <select class="form-control" id="numOfDishes" placeholder="Matching">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -64,15 +70,15 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="exampleTextarea"><p>Tell everyone about your Party!</p></label>
+                <label for="exampleTextarea"><p>Party Description</p></label>
                 <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Give everyone a description of your Party!"></textarea>
-                <small id="partyDes" class="form-text text-muted">Describe your Party</small>
-
+                <small id="partyDes" class="form-text text-muted">Tell us about your Party</small>
               </div>
 
               <fieldset class="form-group">
                 <legend>Attendees Allergies</legend>
                 <div class="form-check">
+                  <div id="allergies">
                   <label class="form-check-label">
                     <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios0" value="option0" checked>
                     None
@@ -125,6 +131,7 @@
                     <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios8" value="option8">
                     Wheat
                   </label>
+                  </div>
                 </div>
               </fieldset>
 
@@ -217,24 +224,23 @@
             </form>
 
           </div>
+            <div class="col-md-3" id="food">
+            
+            </div>
+      
+            <div class="col-md-3" id="drink">
+            </div>
 
-      <div class="col-md-9" id="datahere">
-          <div class="row" >
-            <div class="col-md-1" id="spacer">
-            </div>
-            <div class="col-md-5" id="food">
-            </div>
-            <div class="col-md-1" id="spacer">
-            </div>
-            <div class="col-md-5" id="drink">
-            </div>
           </div>
       </div>
 
     </div>
-
+ 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+
 </body>
 </html>
 
