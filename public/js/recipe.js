@@ -1,32 +1,42 @@
-function ajaxCallPost() {
+function displayResults() {
 
 var selectedNumber;
 
 var selectedAllergy;
   
-var ingredient = $("#dishType").val().trim()
+var ingredient = $("#ingredient").val().trim();
 console.log(ingredient)
 
-var selectedNumber = $("#numOfDish  > option:selected").each(function() {
-     {
-        selectedNumber = $(this).val()
-      //   return false;
-    }
-    console.log(selectedNumber)
+var allergies = $("#allergies input[name=optionsRadios]:checked").each(function() {
+  {
+       selectedAllergy = $(this).val()
+  
+   }
+   console.log(selectedAllergy)
 })
 
-var selectedAllergy = $("#optionsRadios:checkbox:checked").length > 0
+var numberOfRecipes= $("#numOfDishes > option:selected").each(function() {
+    {
+      selectedNumber = $(this).val()
+    }
+    console.log(selectedNumber)
+  
+  })
 
-
-$.ajax("/api/recipe/search/", {
+  $.ajax("/api/recipe/search", {
     type: "POST",
     data: {
       ingredient,
-      selectedNumber,
-      selectedAllergy
-      }
+      selectedAllergy,
+      selectedNumber
+      
+
+    }
   }).then(
     function(response){ 
+
+      
+      console.log(response)
       
       var results = response.body.results;
 
@@ -38,13 +48,13 @@ $.ajax("/api/recipe/search/", {
     
      let recipeImage = results[i].image
 
-     let recipeLink = results[i].sourceUrl
-
-     let ahref = $("<ahref>").text("Recipe Link: " + recipeLink)
+    //  let recipeInstructions = results[i].source
 
       let h1 = $("<h1>").text("Recipe Title: " + recipeName)
 
       let image = $("<img>")
+
+      // let link = $("[href]=" + sourceUrl)
 
       image.attr("src", recipeImage)
       
@@ -52,15 +62,12 @@ $.ajax("/api/recipe/search/", {
 
       recipeDiv.append(h1)
       recipeDiv.append(image)
-      recipeDiv.append(ahref)
-        
-      
-      $("#food").append(recipeDiv)
+      // recipeDiv.append(link)
       }
+    })
+  }
+    
+  $("#submitBtn").on("click", function() {
+    displayResults()
+  })
 
-    });
-}
-
-$("#submitBtn").on("click", function(event) {
-    ajaxCallPost();
-});

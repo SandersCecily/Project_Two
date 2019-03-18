@@ -1,5 +1,7 @@
 var db = require("../models");
 var passport = require("../config/passport");
+var unirest = require("unirest")
+
 
 
 module.exports = function(app) {
@@ -77,9 +79,6 @@ module.exports = function(app) {
 
 
 
-
-
-
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
@@ -129,6 +128,40 @@ module.exports = function(app) {
       });
     }
   });
+
+  //Route for unirest
+
+  app.post("/api/recipe/search", function(req, res) {
+    //Body parser allows us to pull the data from the client-side post.
+
+        //console logging incoming data
+        console.log(req.body.selectedAllergy)
+        console.log(req.body.ingredient)
+        console.log(req.body.selectedNumber)
+        
+        // var ingredient = req.body.ingredient
+        // var selectedAllergy = req.body.selectedAllergy
+        // var selectedNumber = req.body.selectedNumber
+
+        // Refactored your request because that it was returning a 404 error. I also used es6 template strings so you don't have to use string concatenation..
+        unirest.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?query=${req.body.ingredient}&intolerances=${req.body.selectedAllergy}&addRecipeInformation=true&limitLicense=true&number=${req.body.selectedNumber}`)
+        .header("X-RapidAPI-Key", "1a4e91cc1fmsh190bc020ccdb3bfp175679jsn928d6cb14737")
+        .end(function (result) {
+            res.json(result)
+            
+
+            console.log(result.body)
+});
+});
+
+app.get("api/recipe/search", function(req, res) {
+  res.json({greeting: "Hello"})
+
+})
+
+
+
+
 
 
 
