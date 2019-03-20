@@ -147,6 +147,7 @@ module.exports = function(app) {
         unirest.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?query=${req.body.ingredient}&intolerances=${req.body.selectedAllergy}&addRecipeInformation=true&limitLicense=true&number=${req.body.selectedNumber}`)
         .header("X-RapidAPI-Key", "1a4e91cc1fmsh190bc020ccdb3bfp175679jsn928d6cb14737")
         .end(function (result) {
+          console.log(result.error)
             res.json(result)
             
 
