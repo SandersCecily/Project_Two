@@ -7,7 +7,7 @@ var selectedAllergy;
 var ingredient = $("#ingredient").val().trim();
 console.log(ingredient)
 
-var allergies = $("#allergies input[name=optionsRadios]:checked").each(function() {
+var allergies = $(".allergies input[name=optionsRadios]:checked").each(function() {
   {
        selectedAllergy = $(this).val()
   
@@ -50,7 +50,7 @@ var numberOfRecipes= $("#numOfDishes > option:selected").each(function() {
 
     //  let recipeInstructions = results[i].source
 
-      let h1 = $("<h1>").text("Recipe Title: " + recipeName)
+      let h1 = $("<h1>").text(recipeName)
 
       let image = $("<img>")
 
@@ -63,6 +63,7 @@ var numberOfRecipes= $("#numOfDishes > option:selected").each(function() {
       recipeDiv.append(h1)
       recipeDiv.append(image)
       // recipeDiv.append(link)
+      $("#food").append(recipeDiv)
       }
     })
   }
